@@ -1,0 +1,22 @@
+<h2>Post</h2>
+<form [formGroup]="postForm">
+    <mat-form-field appearance="fill">
+        <mat-label>Subreddit</mat-label>
+        <input
+            matInput
+            formControlName="subreddit">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <textarea
+            matInput
+            formControlName="title"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Selftext</mat-label>
+        <textarea
+            matInput
+            formControlName="selftext">
+        </textarea>
+    </mat-form-field>
+</form>

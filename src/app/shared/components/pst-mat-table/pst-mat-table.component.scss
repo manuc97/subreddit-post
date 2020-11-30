@@ -1,0 +1,13 @@
+.mat-elevation-z8 {
+  width: 100%;
+  height: calc(100% - 20px);
+
+  table {
+    width: 100%;
+    height: calc(100% - 60px);
+
+    .mat-row {
+      cursor: pointer;
+    }
+  }
+}

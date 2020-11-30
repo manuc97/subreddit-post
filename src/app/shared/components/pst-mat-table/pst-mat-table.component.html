@@ -1,0 +1,35 @@
+<div class="mat-table-container mat-elevation-z8">
+    <table
+        mat-table
+        [dataSource]="dataSource">
+        <ng-container
+            *ngFor="let item of config.columns"
+            [matColumnDef]="item.columnDef">
+            <th
+                mat-header-cell
+                *matHeaderCellDef>
+                {{item.columnName}}
+            </th>
+            <td
+                mat-cell
+                *matCellDef="let element">
+                {{ element[item.key] }}
+            </td>
+        </ng-container>
+        <tbody>
+            <tr
+                mat-header-row
+                *matHeaderRowDef="config.displayedColumns"></tr>
+            <tr
+                mat-row
+                class="mat-row"
+                *matRowDef="let row; columns: config.displayedColumns;"
+                (click)="itemClicked.emit(row)"></tr>
+        </tbody>
+    </table>
+</div>
+<mat-paginator
+    [pageSize]="10"
+    [length]="count"
+    [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
