@@ -9,11 +9,9 @@
         <span class="error-message">Please try another subreddit</span>
     </div>
 </div>
-<div *ngIf="!isLoading">
-    <pst-mat-table
-        [data]="data"
-        [config]="config"
-        (itemClicked)="onItemClicked($event)">
-    </pst-mat-table>
-</div>
+<pst-mat-table
+    [data]="data"
+    [config]="config"
+    (itemClicked)="onItemClicked($event)">
+</pst-mat-table>
 <router-outlet></router-outlet>

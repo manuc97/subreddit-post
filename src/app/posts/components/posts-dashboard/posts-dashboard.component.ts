@@ -25,7 +25,6 @@ export class PostsDashboardComponent implements OnInit {
     public data: Array<any> = [];
     public config = JSON.parse(JSON.stringify(POST_TABLE_CONFIG));
 
-    public isLoading = true;
     public hasError = false;
     public subreddit = new FormControl();
     public form: FormGroup = this.formBuilder.group({
@@ -40,26 +39,29 @@ export class PostsDashboardComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.searchBySubredit();
+        this.searchBySubreddit();
     }
 
-    public searchBySubredit(): void {
+    public searchBySubreddit(): void {
         this.subreddit.valueChanges.pipe(
             debounceTime(500),
             switchMap(subreddit => {
-                this.isLoading = true;
-                return this.postsService.getSubredditPosts(subreddit).pipe(
-                    catchError(err => {
-                        this.hasError = true;
-                        console.log('Error appeared', err);
-                        return of(err);
-                    })
-                );
+                if (subreddit) {
+                    return this.postsService.getSubredditPosts(subreddit).pipe(
+                        catchError(err => {
+                            this.hasError = true;
+                            console.log('Error appeared', err);
+                            return of(err);
+                        })
+                    );
+                }
+                else {
+                    return of([]);
+                }
             })
         ).subscribe(response => {
             if (response && response.length > 0) {
                 this.hasError = false;
-                this.isLoading = false;
                 this.data = response;
             }
         });
