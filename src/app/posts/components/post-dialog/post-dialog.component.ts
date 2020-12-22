@@ -11,7 +11,7 @@ import { Post } from '../../models/post.model';
     templateUrl: './post-dialog.component.html',
     styleUrls: ['./post-dialog.component.scss']
 })
-export class PostDialogComponent implements OnDestroy{
+export class PostDialogComponent implements OnDestroy {
     public postForm: FormGroup;
     private post: Post;
     private dialogRef: MatDialog;
@@ -27,9 +27,9 @@ export class PostDialogComponent implements OnDestroy{
 
         if (this.post) {
             this.postForm = this.formBuilder.group({
-                subreddit: [this.post.subreddit ? this.post.subreddit : ''],
-                title: [this.post ? this.post.title : ''],
-                selftext: [this.post ? this.post.selftext : '', []],
+                subreddit: [{ value: this.post.subreddit ? this.post.subreddit : '', disabled: true }],
+                title: [{ value: this.post ? this.post.title : '', disabled: true }],
+                selftext: [{ value: this.post ? this.post.selftext : '', disabled: true }],
             });
         } else {
             this.navigateToPosts();
